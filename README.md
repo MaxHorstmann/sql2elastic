@@ -1,4 +1,8 @@
 sql2elastic
 ===========
 
-Elasticsearch tutorial for SQL developers
+Quick Elasticsearch reference for SQL developers.
+
+http://maxhorstmann.github.io/sql2elastic
+
+
