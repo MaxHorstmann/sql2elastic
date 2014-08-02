@@ -77,8 +77,8 @@ LOG ON
 		point because you might be required to <em>re-index</em> all your documents. For example, it's not possible
 		to change the number of <em>primary shards</em> of an index after it has been created.		
 		
-		<p>Therefore, it's typically a good idea not to reference an index directly by its name, 
-		but to create an <em>alias</em> instead:</p>
+		<p>Therefore, it's typically a good idea not to reference an index directly by its name throughout your application. 
+		Create an <em>alias</em> instead and use it everywhere instead:</p>
 		<pre>
 PUT /MyCompany-ActualIndex/
 
@@ -89,10 +89,8 @@ POST /_aliases
 	]
 }
 </pre>
-	<p></p>
-	<p>Elasticsearch allows you to atomically <em>swap</em> an alias to another index. This allows you, for example,
-	to rebuild a new version of the index (which can take some time) while still serving requests from the old version.</p>
-		
+	<p>Elasticsearch allows you to atomically <em>swap</em> an alias to another index. That way, for example,
+	you can rebuild a new version of your index (which can take some time) while still serving requests from the old version.</p>		
   </div>
 
 
