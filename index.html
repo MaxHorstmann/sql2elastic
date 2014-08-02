@@ -19,69 +19,39 @@
   <body>
   <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">SQL2Elasticsearch</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Overview</a></li>
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">CREATE<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">CREATE DATABASE</a></li>
-            <li><a href="#">CREATE TABLE</a></li>
-          </ul>
-        </li>
-
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">INSERT<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">INSERT INTO</a></li>
-            <li><a href="#">BULK INSERT</a></li>
-          </ul>
-        </li>
-
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">SELECT<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">SELECT ... FROM ...</a></li>
-            <li><a href="#">WHERE</a></li>
-            <li><a href="#">ORDER BY</a></li>
-            <li><a href="#">GROUP BY</a></li>
-            <li><a href="#">JOIN</a></li>			
-          </ul>
-        </li>
-		
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">UPDATE<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">UPDATE ... SET ... WHERE ...</a></li>
-          </ul>
-        </li>
-		
-		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">DELETE<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">DELETE by id</a></li>
-            <li><a href="#">DELETE ... WHERE</a></li>
-          </ul>
-        </li>
-		
+        <li><a href="#">Overview</a></li>
+        <li class="active"><a href="#">CREATE</a></li>
+        <li><a href="#">INSERT</a></li>
+        <li><a href="#">SELECT</a></li>
+        <li><a href="#">UPDATE</a></li>
+        <li><a href="#">DELETE</a></li>
 
 		</ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <h1>Quick Elasticsearch reference for SQL developers</h1>
+
+  <div class="container-fluid">
+		
+		<h1>CREATE DATABASE</h1>
+		<p>Creating an empty SQL database is straightforward:</p>
+		<pre>CREATE DATABASE MyCompany</pre>
+		<p>The equivalent Elasticsearch operation is to create an <em>index</em>:</p>
+		<pre>PUT /MyCompany/</pre>
+		
+		
+  </div>
+
 
 	<ul class="pager">
 	  <li><a href="#">Previous</a></li>
