@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SQL2Elasticsearch - Quick Reference</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sql2elastic.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+		  </button>
+		  <a class="navbar-brand" href="index.html">SQL2Elasticsearch</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li><a href="index.html">Overview</a></li>
+			<li class="active"><a href="#">CREATE</a></li>
+			<li><a href="#">INSERT</a></li>
+			<li><a href="#">SELECT</a></li>
+			<li><a href="#">UPDATE</a></li>
+			<li><a href="#">DELETE</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container-fluid">
+		
+		<h1>CREATE DATABASE</h1>
+		<p>The simplest way to creating a new, empty SQL database is:</p>
+		<pre class="sql-code">CREATE DATABASE MyCompany</pre>
+		<p>The equivalent Elasticsearch operation is to create a new, empty <em>index</em>:</p>
+		<pre class="elastic-code">PUT /MyCompany/</pre>
+		
+		<h1>CREATE DATABASE (with settings)</h1>
+		Often, you'll also pass a bunch of parameters with your CREATE DATABASE statement:	
+<pre class="sql-code">	
+CREATE DATABASE MyCompany
+ON 
+( NAME = Empl_dat,
+   FILENAME = 'D:\DATA',
+   SIZE = 10,
+   MAXSIZE = 50,
+   FILEGROWTH = 5 )
+LOG ON
+( NAME = 'Sales_log',
+   FILENAME = 'd:\sample log dir\',
+   SIZE = 5MB,
+   MAXSIZE = 25MB,
+   FILEGROWTH = 5MB )
+ </pre>  
+ <p>Similarly, you can pass a bunch of parameters to Elasticsearch for index creation. Obviously, those
+ are very <em>different</em> parameters because, again, Elasticsearch <em>is</em> different. </p>
+		<h1>Pro tip: use an alias!</h1>
+		<p>One piece of advice: after you've created a SQL database
+		<pre class="sql-code">CREATE DATABASE MyCompany</pre>
+		you'll typically refer to it by its name throughout your application. You typically don't really expect the name of
+		your database to change.</p>
+		<p>In Elasticsearch, it's actually a tad more likely that the name of your index is going to change at some 
+		point because you might be required to <em>re-index</em> all your documents. For example, it's not possible
+		to change the number of <em>primary shards</em> of an index after it has been created.		
+		
+		<p>Therefore, it's typically a good idea not to reference an index directly by its name throughout your application. 
+		Create an <em>alias</em> instead and use it everywhere instead:</p>
+		<pre class="elastic-code">
+PUT /MyCompany-ActualIndex/
+
+POST /_aliases
+{
+	"actions": [
+		{ "add" : { "index" : "MyCompany-ActualIndex", "alias" : "MyCompany" } }
+	]
+}
+</pre>
+		<p>Elasticsearch allows you to atomically <em>swap</em> an alias to another index. That way, for example,
+		you can rebuild a new version of your index (which can take some time) while still serving requests from the old version.</p>		
+	</div>
+
+
+	<ul class="pager">
+	  <li><a href="#">Previous</a></li>
+	  <li><a href="#">Next</a></li>
+	</ul>
+	
+	Created by <a href="http://maxhorstmann.net">Max Horstmann</a>. Feel free to contribute on <a href="https://github.com/MaxHorstmann/sql2elastic">GitHub</a>.
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
