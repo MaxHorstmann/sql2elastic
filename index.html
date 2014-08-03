@@ -53,7 +53,7 @@
 		
 		<h1>CREATE DATABASE (with settings)</h1>
 		Often, you'll also pass a bunch of parameters with your CREATE DATABASE statement:	
-<pre>	
+<pre class="sql-code">	
 CREATE DATABASE MyCompany
 ON 
 ( NAME = Empl_dat,
@@ -72,7 +72,7 @@ LOG ON
  are very <em>different</em> parameters because, again, Elasticsearch <em>is</em> different. </p>
 		<h1>Pro tip: use an alias!</h1>
 		<p>One piece of advice: after you've created a SQL database
-		<pre>CREATE DATABASE MyCompany</pre>
+		<pre class="sql-code">CREATE DATABASE MyCompany</pre>
 		you'll typically refer to it by its name throughout your application. You typically don't really expect the name of
 		your database to change.</p>
 		<p>In Elasticsearch, it's actually a tad more likely that the name of your index is going to change at some 
@@ -81,7 +81,7 @@ LOG ON
 		
 		<p>Therefore, it's typically a good idea not to reference an index directly by its name throughout your application. 
 		Create an <em>alias</em> instead and use it everywhere instead:</p>
-		<pre>
+		<pre class="elastic-code">
 PUT /MyCompany-ActualIndex/
 
 POST /_aliases
