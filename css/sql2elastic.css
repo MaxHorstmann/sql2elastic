@@ -1,0 +1,16 @@
+.sql-code {
+	padding-left: 50px;
+	background-image:url('http://cdn.ientry.com/sites/webpronews/pictures/SQL-Server-2012_320x245.jpg');
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	background-position: 0px 0px;
+}
+
+.elastic-code {
+	background-color: #74b73f;
+	padding-left: 50px;
+	background-image:url('../img/elastic-logo.png');
+	background-repeat: no-repeat;
+	#background-size: 30px 30px;
+	background-position: 0px 0px;
+}
