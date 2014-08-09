@@ -5,5 +5,5 @@ apt-get -y install git
 gem install jekyll
 
 cd /opt/jekyll
-jekyll serve -w -B -b ""
+jekyll serve -w --force_polling -B -b ""
 
